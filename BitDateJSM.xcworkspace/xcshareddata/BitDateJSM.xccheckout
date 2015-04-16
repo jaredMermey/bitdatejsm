@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D552BA00-3C81-4BCC-A231-C642E9807CCF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BitDateJSM</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E13DB88A4A85D6CBF3F212B5370375B68CCF237B</key>
+		<string>https://github.com/jaredMermey/bitdatejsm.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BitDateJSM.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E13DB88A4A85D6CBF3F212B5370375B68CCF237B</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/jaredMermey/bitdatejsm.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E13DB88A4A85D6CBF3F212B5370375B68CCF237B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E13DB88A4A85D6CBF3F212B5370375B68CCF237B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BitDateJSM</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -2,12 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2cp-HA-Dpj">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BitDateJSM" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PageController" id="BYZ-38-t0r" customClass="ViewController" customModule="BitDateJSM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -24,7 +25,7 @@
         <!--Login View Controller-->
         <scene sceneID="8we-cZ-MrZ">
             <objects>
-                <viewController id="2cp-HA-Dpj" customClass="LoginViewController" customModule="BitDateJSM" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="2cp-HA-Dpj" customClass="LoginViewController" customModule="BitDateJSM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BpR-Bi-Clf"/>
                         <viewControllerLayoutGuide type="bottom" id="8Lh-ba-mEE"/>
@@ -52,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BB9-gL-I41" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="971" y="343"/>
+            <point key="canvasLocation" x="997" y="220"/>
         </scene>
         <!--Cards View Controller-->
         <scene sceneID="M8F-Qy-8f0">
@@ -90,10 +91,53 @@
             </objects>
             <point key="canvasLocation" x="305" y="1025"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="buk-yK-keg">
+            <objects>
+                <viewController id="XSq-dF-hPr" customClass="ProfileViewController" customModule="BitDateJSM" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JIS-HL-WH0"/>
+                        <viewControllerLayoutGuide type="bottom" id="pgm-1I-1X6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lnf-3v-bXo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PUD-8t-YE5">
+                                <rect key="frame" x="0.0" y="64" width="600" height="469"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXy-DG-Hus">
+                                <rect key="frame" x="16" y="554" width="568" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SXy-DG-Hus" firstAttribute="trailing" secondItem="Lnf-3v-bXo" secondAttribute="trailingMargin" id="92o-c7-9wi"/>
+                            <constraint firstItem="SXy-DG-Hus" firstAttribute="top" secondItem="PUD-8t-YE5" secondAttribute="bottom" constant="21" id="Adt-Gm-WHd"/>
+                            <constraint firstItem="pgm-1I-1X6" firstAttribute="top" secondItem="SXy-DG-Hus" secondAttribute="bottom" constant="25" id="JKW-Tp-nW4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PUD-8t-YE5" secondAttribute="trailing" constant="-16" id="JmF-Ov-p9x"/>
+                            <constraint firstItem="PUD-8t-YE5" firstAttribute="top" secondItem="JIS-HL-WH0" secondAttribute="bottom" id="M97-1w-WH6"/>
+                            <constraint firstItem="PUD-8t-YE5" firstAttribute="leading" secondItem="Lnf-3v-bXo" secondAttribute="leadingMargin" constant="-16" id="XKM-Eb-fsR"/>
+                            <constraint firstItem="SXy-DG-Hus" firstAttribute="leading" secondItem="Lnf-3v-bXo" secondAttribute="leadingMargin" id="qty-1S-V45"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UbQ-hE-XRF"/>
+                    <connections>
+                        <outlet property="imageView" destination="PUD-8t-YE5" id="Xvb-5r-ZuD"/>
+                        <outlet property="nameLabel" destination="SXy-DG-Hus" id="ofo-vi-KR0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iVb-qY-cW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="305" y="1702"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="HNz-Ja-by7">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ryL-6x-KDz" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CardsNavController" automaticallyAdjustsScrollViewInsets="NO" id="ryL-6x-KDz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="efl-Uu-3Cg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -107,6 +151,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XVh-A4-tcX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-403" y="1025"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4cC-bf-O32">
+            <objects>
+                <navigationController storyboardIdentifier="ProfileNavController" automaticallyAdjustsScrollViewInsets="NO" id="WfA-kl-EWj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gkD-wX-ZPv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="XSq-dF-hPr" kind="relationship" relationship="rootViewController" id="xLW-Ls-qvl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="68f-ch-U13" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-403" y="1702"/>
         </scene>
     </scenes>
 </document>

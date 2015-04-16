@@ -24,6 +24,18 @@ class CardsViewController: UIViewController, SwipeViewDelegate {
     var backCard: Card?
     var frontCard: Card?
     
+    //an array of users to eventually populate the cards
+    var users: [User]?
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //centered image for title
+        navigationItem.titleView = UIImageView(image: UIImage(named: "nav-header"))
+        //bar button item on left
+        let leftButtonBarItem = UIBarButtonItem(image: UIImage(named: "nav-back-button"), style: UIBarButtonItemStyle.Plain, target: self, action: "goToProfile:")
+        navigationItem.setLeftBarButtonItem(leftButtonBarItem, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +55,12 @@ class CardsViewController: UIViewController, SwipeViewDelegate {
        
         //frontCard's swipe view becomes a subview of CardStackView
         cardStackView.addSubview(frontCard!.swipeView)
+        
+        fetchUnviewedUser({
+            returnedUsers in
+            self.users = returnedUsers
+            println(self.users)
+            })
         
     }
 
@@ -68,6 +86,10 @@ class CardsViewController: UIViewController, SwipeViewDelegate {
         return Card(cardView: cardView, swipeView: swipeView)
     }
     
+    //helper function for nav barButtonItem
+    func goToProfile(button:UIBarButtonItem){
+        pageController.goToPreviousVC()
+    }
     
     //Mark: SwipeView Delegate functions
     

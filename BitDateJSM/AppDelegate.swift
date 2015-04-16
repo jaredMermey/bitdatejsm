@@ -21,7 +21,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             "HSF4zuwwVmQNqv98PHxdRMeiqO7teeTwn1lYOyzw")
         PFFacebookUtils.initializeFacebook()
         
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var initialViewController: UIViewController
+        
+        //if we have a currentUser i.e., session then go to CardsNavControllers...reference currentUser function in User class
+        if currentUser() != nil {
+            initialViewController = pageController
+        }
+        //if we have do not have a currentUser then go to LoginViewController
+        else {
+            initialViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as UIViewController
+        }
+        
+        //as we are overriding entry point we need to tell app where to start presenting ViewController
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+        
         return true
+    }
+    
+    //links FB and Parse sessions
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        return FBAppCall.handleOpenURL(url, sourceApplication: sourceApplication, withSession: PFFacebookUtils.session())
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -40,12 +61,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+     
+        //FB application becomes action and therefore links to Parse
+        FBAppCall.handleDidBecomeActiveWithSession(PFFacebookUtils.session())
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+        
+        //session closes and terminates link
+        PFFacebookUtils.session().close()
     }
 
     // MARK: - Core Data stack

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0257771B1ADC8B8D00B84F6E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0257771A1ADC8B8D00B84F6E /* LoginViewController.swift */; };
+		0257771E1ADD4FC700B84F6E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0257771D1ADD4FC700B84F6E /* User.swift */; };
+		025777201ADD543800B84F6E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0257771F1ADD543800B84F6E /* ProfileViewController.swift */; };
 		026D6E001ACA1B4E0008D7C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D6DFF1ACA1B4E0008D7C5 /* AppDelegate.swift */; };
 		026D6E031ACA1B4E0008D7C5 /* BitDateJSM.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 026D6E011ACA1B4E0008D7C5 /* BitDateJSM.xcdatamodeld */; };
 		026D6E051ACA1B4E0008D7C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026D6E041ACA1B4E0008D7C5 /* ViewController.swift */; };
@@ -46,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		0257771A1ADC8B8D00B84F6E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0257771D1ADD4FC700B84F6E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0257771F1ADD543800B84F6E /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		026D6DFA1ACA1B4E0008D7C5 /* BitDateJSM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitDateJSM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		026D6DFE1ACA1B4E0008D7C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		026D6DFF1ACA1B4E0008D7C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +115,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0257771C1ADD4F5600B84F6E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0257771D1ADD4FC700B84F6E /* User.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		026D6DF11ACA1B4E0008D7C5 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				026D6DFF1ACA1B4E0008D7C5 /* AppDelegate.swift */,
+				0257771C1ADD4F5600B84F6E /* Data */,
 				026D6E221ACA1B950008D7C5 /* Views */,
 				026D6E271ACA351C0008D7C5 /* ViewControllers */,
 				026D6E061ACA1B4E0008D7C5 /* Main.storyboard */,
@@ -187,6 +200,7 @@
 				026D6E041ACA1B4E0008D7C5 /* ViewController.swift */,
 				0257771A1ADC8B8D00B84F6E /* LoginViewController.swift */,
 				026D6E281ACA35520008D7C5 /* CardsViewController.swift */,
+				0257771F1ADD543800B84F6E /* ProfileViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -361,7 +375,9 @@
 				026D6E051ACA1B4E0008D7C5 /* ViewController.swift in Sources */,
 				026D6E031ACA1B4E0008D7C5 /* BitDateJSM.xcdatamodeld in Sources */,
 				026D6E291ACA35520008D7C5 /* CardsViewController.swift in Sources */,
+				0257771E1ADD4FC700B84F6E /* User.swift in Sources */,
 				026D6E241ACA1BC90008D7C5 /* CardView.swift in Sources */,
+				025777201ADD543800B84F6E /* ProfileViewController.swift in Sources */,
 				026D6E261ACA2C8F0008D7C5 /* SwipeView.swift in Sources */,
 				026D6E001ACA1B4E0008D7C5 /* AppDelegate.swift in Sources */,
 			);
