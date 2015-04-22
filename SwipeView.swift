@@ -18,13 +18,19 @@ class SwipeView: UIView {
     }
     
     weak var delegate: SwipeViewDelegate?
+    
+    //an image view that will always get create when we initialize a swipeview instance
+    let overlay: UIImageView = UIImageView()
 
+    //variable to store direction of swiping
+    var direction: Direction?
+    
     var innerView: UIView? {
         didSet {
             //if innerView exists then assign the instance to the constant "C"
             if let v = innerView {
                 //adds v as a subView to SwipeView
-                addSubview(v)
+                insertSubview(v, belowSubview: overlay)
                 //defines size of v
                 v.frame = CGRect(x:0, y:0, width: frame.width, height: frame.height)
             }
@@ -54,10 +60,14 @@ class SwipeView: UIView {
     //private function to customly intialize swipeview.
     private func initialize() {
         //set back to clea
-        self.backgroundColor = UIColor.redColor()
+        self.backgroundColor = UIColor.clearColor()
         
         //Recognized we are moving the SwipeView and calls the helper function called dragged
         self.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "dragged:"))
+        
+        //overlay should be drawn to the same size of the swipeVie
+        overlay.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        addSubview(overlay)
     }
     
     func dragged(gestureRecognizer: UIPanGestureRecognizer){
@@ -81,6 +91,8 @@ class SwipeView: UIView {
 
                 //changes the center for SwipeView to move as "distance" changes
                 center = CGPointMake(originalPoint!.x + distance.x, originalPoint!.y + distance.y)
+           
+                updateOverlay(distance.x)
             
             //calls function snap back to center
             case UIGestureRecognizerState.Ended:
@@ -126,6 +138,19 @@ class SwipeView: UIView {
         })
     }
     
+    //function to make overlay stamps apper
+    private func updateOverlay(distance: CGFloat) {
+        
+        var newDirection: Direction
+        newDirection = distance < 0 ? .Left : .Right
+        
+        if newDirection != direction {
+            direction = newDirection
+            overlay.image = direction == .Right ? UIImage(named: "yeah-stamp") : UIImage(named: "nah-stamp")
+        }
+        overlay.alpha = abs(distance) / (superview!.frame.width/2)
+    }
+    
     
     //function to snap back card after drag...over 0.2 seconds it changes center back to orginalPoint
     private func resetViewPositionAndTransformations(){
@@ -135,6 +160,8 @@ class SwipeView: UIView {
             self.center = self.originalPoint!
             //changes angle of card back to 0 so it is flat
             self.transform = CGAffineTransformMakeRotation(0)
+            //alpha over ovelay goes to 0 i.e.,invisbile
+            self.overlay.alpha = 0
             
         })
     }

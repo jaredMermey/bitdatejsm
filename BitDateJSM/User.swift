@@ -45,14 +45,64 @@ func currentUser() -> User? {
 //public function to call 
 
 func fetchUnviewedUser(callback:([User])->()){
-    PFUser.query()
-        .whereKey("objectId", notEqualTo: PFUser.currentUser().objectId)
-        .findObjectsInBackgroundWithBlock({
-            objects, error in
-            if let pfUsers = objects as? [PFUser] {
-                let users = map(pfUsers, {pfUsertoUser($0)})
-                callback(users)
+    //defaults to querying Users, therefore we need to add classname bc we are querying Actions
+    PFQuery(className: "Action")
+    .whereKey("byUser", equalTo: PFUser.currentUser().objectId).findObjectsInBackgroundWithBlock({
+        objects, error in
+        //generate array called seendIDs just toUser Ids (leaving out everything else in the dB)
+        let seenIDS = map(objects, {$0.objectForKey("toUser")!})
+        
+        PFUser.query()
+            .whereKey("objectId", notEqualTo: PFUser.currentUser().objectId)
+            //we do not want to see anyone with an objectId in the seenID array...i.e, exclude them
+            .whereKey("objectId", notContainedIn: seenIDS)
+            .findObjectsInBackgroundWithBlock({
+                objects, error in
+                if let pfUsers = objects as? [PFUser] {
+                    let users = map(pfUsers, {pfUsertoUser($0)})
+                    callback(users)
             }
-            }
-    )
+        })
+    })
+}
+
+//save when a person is skipped
+
+func saveSkip(user: User){
+    //creates a new object (i.e., table) with specific attributes (i.e columns)
+    let skip = PFObject(className: "Action")
+    //who is the user doing the skipping
+    skip.setObject(PFUser.currentUser().objectId, forKey: "byUser")
+    //who is the person that is getting skipped
+    skip.setObject(user.id, forKey: "toUser")
+    //action type is call skipped...bc same table will keep likes
+    skip.setObject("skipped", forKey: "type")
+    //save
+    skip.saveInBackgroundWithBlock(nil)    
+}
+
+//save when a person is liked
+func saveLike(user: User){
+    PFQuery(className: "Action")
+        .whereKey("byUser", equalTo: user.id)
+        .whereKey("toUser", equalTo: PFUser.currentUser().objectId)
+        .whereKey("type", equalTo: "liked")
+    //gets first object that matches above and assigns it to object
+    .getFirstObjectInBackgroundWithBlock({
+        object, error in
+        
+        var matched = false
+        
+        if object != nil{
+            matched = true
+            object.setObject("matched", forKey: "type")
+            object.saveInBackgroundWithBlock(nil)
+        }
+        
+        let match = PFObject(className: "Action")
+        match.setObject(PFUser.currentUser().objectId, forKey: "byUser")
+        match.setObject(user.id, forKey: "toUser")
+        match.setObject(matched ? "matched" : "liked", forKey: "type")
+        match.saveInBackgroundWithBlock(nil)
+    })
 }

@@ -14,6 +14,24 @@ class CardView: UIView{
 
     private let imageView: UIImageView = UIImageView()
     private let nameLabel: UILabel = UILabel()
+    
+    //didSet functionality allows us to immediately update the UI when we chage the value of a property 
+    var name: String? {
+        didSet {
+            //if name exists the update name label with new name
+            if let name = name {
+                nameLabel.text = name
+            }
+        }
+    }
+    
+    var image: UIImage? {
+        didSet {
+            if let image = image {
+                imageView.image = image
+            }
+        }
+    }
 
     //initialize CardView class by taking characteristics of superclass's (UIView's) initializer then run private initializer
     required init(coder aDecoder: NSCoder) {
